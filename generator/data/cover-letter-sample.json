@@ -1,0 +1,20 @@
+{
+  "person": {
+    "name": "Alex Developer",
+    "email": "alex@example.com",
+    "phone": "+34 600 000 000",
+    "location": "Spain"
+  },
+  "application": {
+    "company": "Example Company",
+    "role": "Android Developer",
+    "date": "2026-01-01"
+  },
+  "greeting": "Dear hiring team,",
+  "paragraphs": [
+    "I am writing to apply for the Android Developer position at Example Company. I am interested in the role because it combines Kotlin, product collaboration, and modern Android engineering practices.",
+    "My experience includes building and maintaining Android applications, working with clean architecture, collaborating with QA and backend teams, and improving code quality through debugging and refactoring.",
+    "I would welcome the opportunity to discuss how my background can contribute to your team."
+  ],
+  "closing": "Kind regards,"
+}

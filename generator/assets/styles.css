@@ -1,0 +1,444 @@
+:root {
+  --ink: #172033;
+  --muted: #5a6475;
+  --line: #d8e2df;
+  --paper: #ffffff;
+  --soft: #f5f8f7;
+  --accent: #0f766e;
+  --accent-2: #1f4f7a;
+  --chip: #eef6f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #e9edf2;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.33;
+}
+
+.dashboard-page {
+  min-height: 100vh;
+}
+
+.dashboard {
+  width: min(1120px, calc(100vw - 32px));
+  margin: 24px auto;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 32px rgba(23, 32, 51, 0.1);
+}
+
+.dashboard-header h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.dashboard-actions a,
+.application-actions a,
+.disabled-link {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--accent);
+  background: var(--paper);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.disabled-link {
+  color: var(--muted);
+  opacity: 0.55;
+}
+
+.dashboard-section {
+  margin-top: 18px;
+  padding: 22px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.application-table {
+  display: grid;
+  gap: 12px;
+}
+
+.application-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.application-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.application-head h3 {
+  margin: 0 0 3px;
+  font-size: 16px;
+}
+
+.status {
+  align-self: flex-start;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.application-meta {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.application-meta dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.application-meta dd {
+  margin: 2px 0 0;
+}
+
+.application-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.workflow ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.workflow li {
+  margin: 6px 0;
+}
+
+.cv-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 24px auto;
+  padding: 13mm 15mm 14mm;
+  background: var(--paper);
+  box-shadow: 0 10px 32px rgba(23, 32, 51, 0.14);
+}
+
+.hero {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 31px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.target {
+  margin: 7px 0 5px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.meta-line,
+.contact-line,
+.availability {
+  margin: 2px 0;
+  color: var(--muted);
+}
+
+.availability {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.section {
+  margin-top: 11px;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-title h2 {
+  margin: 0 0 3px;
+  color: var(--accent);
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+p {
+  margin: 0 0 5px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 12px;
+}
+
+.skill-group {
+  break-inside: avoid;
+}
+
+.skill-group h3,
+.two-columns h3 {
+  margin: 0 0 2px;
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.skill-group p {
+  color: var(--muted);
+}
+
+.job {
+  break-inside: avoid;
+  margin-top: 7px;
+}
+
+.job-head h3 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.15;
+}
+
+.dates,
+.stack {
+  color: var(--muted);
+}
+
+.stack {
+  margin-top: 3px;
+}
+
+.bullets {
+  margin: 3px 0 0 15px;
+  padding: 0;
+}
+
+.bullets li {
+  margin: 1px 0;
+  padding-left: 1px;
+}
+
+.muted-block .job {
+  padding-left: 8px;
+  border-left: 2px solid var(--line);
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+}
+
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plain-list li {
+  margin: 0 0 3px;
+}
+
+.compact-line {
+  margin-bottom: 7px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  background: var(--chip);
+  color: var(--ink);
+  font-size: 11px;
+  border-radius: 4px;
+}
+
+.backend-template {
+  --accent: #1f4f7a;
+  --chip: #edf4fb;
+}
+
+.fullstack-template {
+  --accent: #6f4e9a;
+  --chip: #f4eff8;
+}
+
+.ats-template {
+  box-shadow: none;
+  padding: 14mm 16mm;
+}
+
+.ats-template .hero {
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.ats-template .hero h1 {
+  font-size: 24px;
+}
+
+.ats-template .target {
+  font-size: 13px;
+}
+
+.ats-template .skills-grid,
+.ats-template .two-columns {
+  display: block;
+}
+
+.ats-template .skill-group {
+  margin-bottom: 5px;
+}
+
+.letter-page {
+  padding: 22mm;
+}
+
+.letter-header {
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 10px;
+}
+
+.letter-header h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+}
+
+.letter-meta {
+  margin: 24px 0;
+  color: var(--muted);
+}
+
+.letter-body {
+  max-width: 165mm;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.letter-body p {
+  margin-bottom: 14px;
+}
+
+.signature {
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .dashboard-header,
+  .application-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .application-meta,
+  .skills-grid,
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-page {
+    width: 100%;
+    margin: 0;
+    padding: 18px;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: var(--paper);
+  }
+
+  .cv-page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none;
+  }
+}

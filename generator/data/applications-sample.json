@@ -1,0 +1,34 @@
+[
+  {
+    "id": "example-android-role",
+    "company": "Example Company",
+    "role": "Android Developer",
+    "roleFamily": "android",
+    "location": "Remote / hybrid",
+    "workMode": "Hybrid",
+    "status": "draft",
+    "createdAt": "2026-01-01",
+    "updatedAt": "2026-01-01",
+    "template": "android",
+    "dataPath": "",
+    "previewUrl": "/generator/templates/android.html?data=android-sample",
+    "pdfPath": "",
+    "notesPath": ""
+  },
+  {
+    "id": "example-backend-role",
+    "company": "Example Platform",
+    "role": "Backend Developer",
+    "roleFamily": "backend",
+    "location": "Remote",
+    "workMode": "Remote",
+    "status": "lead",
+    "createdAt": "2026-01-01",
+    "updatedAt": "2026-01-01",
+    "template": "backend",
+    "dataPath": "",
+    "previewUrl": "/generator/templates/backend.html?data=backend-sample",
+    "pdfPath": "",
+    "notesPath": ""
+  }
+]

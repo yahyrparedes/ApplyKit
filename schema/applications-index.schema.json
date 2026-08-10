@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplyKit applications index",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "company", "role", "roleFamily", "status", "template"],
+    "properties": {
+      "id": { "type": "string" },
+      "company": { "type": "string" },
+      "role": { "type": "string" },
+      "roleFamily": { "type": "string" },
+      "location": { "type": "string" },
+      "workMode": { "type": "string" },
+      "status": { "type": "string" },
+      "createdAt": { "type": "string" },
+      "updatedAt": { "type": "string" },
+      "template": { "type": "string" },
+      "dataPath": { "type": "string" },
+      "previewUrl": { "type": "string" },
+      "pdfPath": { "type": "string" },
+      "notesPath": { "type": "string" }
+    }
+  }
+}

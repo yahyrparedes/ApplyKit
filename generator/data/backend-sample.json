@@ -1,0 +1,52 @@
+{
+  "person": {
+    "name": "Alex Developer",
+    "location": "Spain | Remote / hybrid",
+    "email": "alex@example.com",
+    "phone": "+34 600 000 000",
+    "availability": "Available for backend roles focused on APIs, cloud, and distributed systems."
+  },
+  "target": {
+    "title": "Backend Developer | Java Spring Boot | Go | Cloud",
+    "roleLabel": "Backend / APIs / Cloud"
+  },
+  "profile": [
+    "Backend Developer with experience building REST APIs, batch processes, integrations, and cloud services using Java, Spring Boot, Go, Python, and Node.js.",
+    "Focused on maintainable services, database performance, observability, CI/CD, and agile collaboration with product and engineering teams."
+  ],
+  "skills": [
+    { "name": "Backend", "items": ["Java", "Spring Boot", "Spring Batch", "Go", "Python", "Django REST Framework", "Node.js", "TypeScript"] },
+    { "name": "Cloud", "items": ["AWS Lambda", "AWS CDK", "GCP Cloud Run", "Cloud SQL", "Cognito", "DynamoDB", "CloudWatch"] },
+    { "name": "Data", "items": ["PostgreSQL", "MySQL", "MongoDB", "DynamoDB", "Redis", "SQL optimization"] },
+    { "name": "Practices", "items": ["REST APIs", "OpenAPI", "JWT", "Docker", "CI/CD", "observability", "Scrum", "code reviews"] }
+  ],
+  "experiencePrimary": [
+    {
+      "company": "Insurance Technology Company",
+      "role": "Backend Developer",
+      "dates": "Jan 2023 - Present",
+      "stack": "Java, Spring Boot, Go, PostgreSQL, Docker, Cloud Run",
+      "highlights": [
+        "Develop backend APIs for customer-facing digital products.",
+        "Build batch processes and integrations with internal systems.",
+        "Improve SQL queries, service reliability, and observability.",
+        "Collaborate with product, QA, and engineering teams in Scrum."
+      ]
+    },
+    {
+      "company": "Education Platform",
+      "role": "Python Backend Developer",
+      "dates": "Nov 2022 - Jan 2023",
+      "stack": "Python, Django, DRF, Docker, multi-tenant",
+      "highlights": [
+        "Develop backend features for a hiring platform.",
+        "Maintain server-side architecture and technical documentation.",
+        "Support multi-language and multi-tenant application behavior."
+      ]
+    }
+  ],
+  "experienceSecondary": [],
+  "education": [{ "name": "Technical Degree / Computer Science Training", "detail": "Year - Year | Graduate" }],
+  "training": ["Spring Boot Microservices.", "Cloud fundamentals.", "Java Frameworks.", "API design."],
+  "alignment": ["Java", "Spring Boot", "Go", "Python", "REST APIs", "SQL", "Docker", "AWS", "GCP", "CI/CD", "Scrum"]
+}

@@ -1,0 +1,96 @@
+# ============================================================
+# CV Application Workspace
+# Default mode: reusable public template
+# ============================================================
+#
+# This repository is designed to be safe as a public template by default.
+# It tracks generator code, documentation, and sample schemas.
+# It ignores personal CV data, source documents, generated PDFs/previews,
+# local caches, and temporary extraction files.
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment / local config
+.env
+.env.*
+!.env.example
+
+# Node dependencies and package manager caches
+node_modules/
+.npm/
+.pnpm-store/
+yarn.lock
+pnpm-lock.yaml
+
+# Framework/build caches
+.astro/
+.vite/
+dist/
+build/
+coverage/
+
+# Generated outputs: can be regenerated from HTML/JSON
+output/pdf/*
+output/preview/*
+*.pdf
+
+# Temporary extraction/rendering files
+temp/
+tmp/
+*.tmp
+*.log
+
+# Personal source documents: sensitive and usually heavy
+sources/cv/*
+sources/supporting-documents/*
+
+# Personal extracted profile/memory
+master-info/*
+
+# Real job applications contain personal targeting and should not be public
+applications/index.json
+applications/android/*
+applications/backend/*
+applications/fullstack/*
+
+# Keep folder structure in template mode
+!sources/cv/.gitkeep
+!sources/supporting-documents/.gitkeep
+!master-info/.gitkeep
+!applications/README.md
+!applications/android/.gitkeep
+!applications/backend/.gitkeep
+!applications/fullstack/.gitkeep
+!output/pdf/.gitkeep
+!output/preview/.gitkeep
+
+# ============================================================
+# Private workspace mode
+# ============================================================
+#
+# If this is a private repository and you want to version your structured
+# CV data, uncomment the allow-list below. Keep binary source documents and
+# generated outputs ignored unless you explicitly need them.
+#
+# !master-info/
+# !master-info/*.md
+# !applications/index.json
+# !applications/android/
+# !applications/backend/
+# !applications/fullstack/
+# !applications/**/*.json
+# !applications/**/*.md
+#
+# Optional, only if you really want to version original documents privately:
+# !sources/cv/
+# !sources/cv/*.pdf
+# !sources/supporting-documents/
+# !sources/supporting-documents/*.pdf
+#
+# Recommended: do not track generated PDFs/previews. They are reproducible.

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplyKit cover letter data",
+  "type": "object",
+  "required": ["person", "application", "greeting", "paragraphs", "closing"],
+  "properties": {
+    "person": {
+      "type": "object",
+      "required": ["name", "email", "phone", "location"],
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" }
+      }
+    },
+    "application": {
+      "type": "object",
+      "required": ["company", "role", "date"],
+      "properties": {
+        "company": { "type": "string" },
+        "role": { "type": "string" },
+        "date": { "type": "string" }
+      }
+    },
+    "greeting": { "type": "string" },
+    "paragraphs": { "type": "array", "items": { "type": "string" } },
+    "closing": { "type": "string" }
+  }
+}

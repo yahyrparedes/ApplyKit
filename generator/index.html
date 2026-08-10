@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ApplyKit</title>
+    <link rel="icon" href="/generator/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/generator/assets/styles.css">
+  </head>
+  <body class="dashboard-page">
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <div>
+          <div class="brand-row">
+            <img src="/generator/assets/logo.svg" alt="" class="brand-logo">
+            <div>
+              <p class="eyebrow">AI-ready job application workspace</p>
+              <h1>ApplyKit</h1>
+            </div>
+          </div>
+          <p>Organize career sources, generate role-focused CVs, preview them in HTML, export polished PDFs, and track every application.</p>
+        </div>
+        <nav class="dashboard-actions">
+          <a href="/generator/templates/android.html?data=android-sample">Android sample</a>
+          <a href="/generator/templates/backend.html?data=backend-sample">Backend sample</a>
+          <a href="/generator/templates/fullstack.html?data=fullstack-sample">Fullstack sample</a>
+          <a href="/generator/templates/ats.html?data=android-sample">ATS sample</a>
+          <a href="/generator/templates/cover-letter.html?data=cover-letter-sample">Cover letter sample</a>
+        </nav>
+      </header>
+
+      <section class="dashboard-section">
+        <div class="section-title">
+          <h2>Applications</h2>
+          <span id="application-count"></span>
+        </div>
+        <div class="application-table" id="applications"></div>
+      </section>
+
+      <section class="dashboard-section workflow">
+        <div class="section-title">
+          <h2>Workflow</h2>
+        </div>
+        <ol>
+          <li>Add source documents to <code>sources/</code>.</li>
+          <li>Generate reusable notes in <code>master-info/</code>.</li>
+          <li>Create an application folder under <code>applications/&lt;role-family&gt;/&lt;slug&gt;/</code>.</li>
+          <li>Review the HTML preview in the browser.</li>
+          <li>Export final PDF and cover letter to <code>output/</code>.</li>
+        </ol>
+      </section>
+    </main>
+    <script type="module" src="/generator/assets/dashboard.js"></script>
+  </body>
+</html>

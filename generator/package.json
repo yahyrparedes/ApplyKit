@@ -1,0 +1,16 @@
+{
+  "name": "applykit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/server.js",
+    "pdf": "node scripts/export-pdf.js",
+    "export:all": "node scripts/export-all.js",
+    "new": "node scripts/new-application.js",
+    "validate": "node scripts/validate.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.0"
+  }
+}

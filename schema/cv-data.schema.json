@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApplyKit CV data",
+  "type": "object",
+  "required": ["person", "target", "profile", "skills", "experiencePrimary", "education", "training", "alignment"],
+  "properties": {
+    "person": {
+      "type": "object",
+      "required": ["name", "location", "email", "phone", "availability"],
+      "properties": {
+        "name": { "type": "string" },
+        "location": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "availability": { "type": "string" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["title", "roleLabel"],
+      "properties": {
+        "title": { "type": "string" },
+        "roleLabel": { "type": "string" }
+      }
+    },
+    "profile": { "type": "array", "items": { "type": "string" } },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "items"],
+        "properties": {
+          "name": { "type": "string" },
+          "items": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "experiencePrimary": { "$ref": "#/$defs/experienceList" },
+    "experienceSecondary": { "$ref": "#/$defs/experienceList" },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "detail"],
+        "properties": {
+          "name": { "type": "string" },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "training": { "type": "array", "items": { "type": "string" } },
+    "alignment": { "type": "array", "items": { "type": "string" } },
+    "labels": { "type": "object" }
+  },
+  "$defs": {
+    "experienceList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["company", "role", "dates", "highlights"],
+        "properties": {
+          "company": { "type": "string" },
+          "role": { "type": "string" },
+          "dates": { "type": "string" },
+          "stack": { "type": "string" },
+          "highlights": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
