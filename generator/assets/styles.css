@@ -7,6 +7,10 @@
   --accent: #0f766e;
   --accent-2: #1f4f7a;
   --chip: #eef6f4;
+  --a4-width: 210mm;
+  --a4-height: 297mm;
+  --page-padding-x: 12mm;
+  --page-padding-y: 10mm;
 }
 
 * {
@@ -18,8 +22,8 @@ body {
   color: var(--ink);
   background: #e9edf2;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 1.33;
+  font-size: 11.8px;
+  line-height: 1.24;
 }
 
 .dashboard-page {
@@ -170,32 +174,33 @@ body {
 }
 
 .cv-page {
-  width: 210mm;
-  min-height: 297mm;
+  width: var(--a4-width);
+  min-height: var(--a4-height);
   margin: 24px auto;
-  padding: 13mm 15mm 14mm;
+  padding: var(--page-padding-y) var(--page-padding-x);
   background: var(--paper);
   box-shadow: 0 10px 32px rgba(23, 32, 51, 0.14);
+  overflow: hidden;
 }
 
 .hero {
   text-align: center;
-  padding-bottom: 10px;
+  padding-bottom: 7px;
   border-bottom: 2px solid var(--accent);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 31px;
+  font-size: 25px;
   line-height: 1.05;
   letter-spacing: 0;
 }
 
 .target {
-  margin: 7px 0 5px;
+  margin: 5px 0 3px;
   color: var(--accent);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .meta-line,
@@ -211,7 +216,7 @@ body {
 }
 
 .section {
-  margin-top: 11px;
+  margin-top: 7px;
 }
 
 .section-title {
@@ -219,14 +224,14 @@ body {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   border-bottom: 1px solid var(--line);
 }
 
 .section-title h2 {
-  margin: 0 0 3px;
+  margin: 0 0 2px;
   color: var(--accent);
-  font-size: 16px;
+  font-size: 12.5px;
   line-height: 1.1;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -238,13 +243,13 @@ body {
 }
 
 p {
-  margin: 0 0 5px;
+  margin: 0 0 4px;
 }
 
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px 12px;
+  gap: 3px 10px;
 }
 
 .skill-group {
@@ -254,7 +259,7 @@ p {
 .skill-group h3,
 .two-columns h3 {
   margin: 0 0 2px;
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--ink);
 }
 
@@ -264,12 +269,12 @@ p {
 
 .job {
   break-inside: avoid;
-  margin-top: 7px;
+  margin-top: 4px;
 }
 
 .job-head h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: 12.5px;
   line-height: 1.15;
 }
 
@@ -279,11 +284,11 @@ p {
 }
 
 .stack {
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .bullets {
-  margin: 3px 0 0 15px;
+  margin: 2px 0 0 14px;
   padding: 0;
 }
 
@@ -293,7 +298,7 @@ p {
 }
 
 .muted-block .job {
-  padding-left: 8px;
+  padding-left: 7px;
   border-left: 2px solid var(--line);
 }
 
@@ -314,24 +319,24 @@ p {
 }
 
 .compact-line {
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 }
 
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 4px;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  min-height: 20px;
-  padding: 2px 7px;
+  min-height: 16px;
+  padding: 1px 5px;
   border: 1px solid var(--line);
   background: var(--chip);
   color: var(--ink);
-  font-size: 11px;
+  font-size: 10.5px;
   border-radius: 4px;
 }
 
@@ -347,7 +352,7 @@ p {
 
 .ats-template {
   box-shadow: none;
-  padding: 14mm 16mm;
+  padding: 13mm 15mm;
 }
 
 .ats-template .hero {
@@ -412,16 +417,12 @@ p {
     flex-direction: column;
   }
 
-  .application-meta,
-  .skills-grid,
-  .two-columns {
+  .application-meta {
     grid-template-columns: 1fr;
   }
 
-  .cv-page {
-    width: 100%;
-    margin: 0;
-    padding: 18px;
+  body:has(.cv-page) {
+    min-width: calc(var(--a4-width) + 24px);
   }
 }
 
@@ -436,9 +437,10 @@ p {
   }
 
   .cv-page {
-    width: 210mm;
-    min-height: 297mm;
+    width: var(--a4-width);
+    min-height: var(--a4-height);
     margin: 0;
     box-shadow: none;
+    overflow: visible;
   }
 }
