@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.1.1 - A4 Preview Polish
+
+Improves the CV preview and PDF output so generated documents match an A4 page more closely before export.
+
+### Changed
+
+- Refined CV template typography, spacing, and section rhythm for one-page A4 exports.
+- Added explicit A4 layout variables for preview and print rendering.
+- Preserved the A4 page model on small screens instead of switching CV previews to a fluid mobile layout.
+- Tightened keyword chips and compact sections to reduce accidental PDF overflow.
+
+### Added
+
+- Committed `package-lock.json` for reproducible generator dependency installs.
+
 ## v0.1.0 - ApplyKit Preview
 
 Initial public template release.
