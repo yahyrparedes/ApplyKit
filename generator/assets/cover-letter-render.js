@@ -7,6 +7,7 @@ const data = await fetch(sourceUrl).then((response) => {
   return response.json();
 });
 
+document.documentElement.lang = data.lang || "en";
 document.title = `${data.person.name} - Cover letter - ${data.application.role}`;
 
 function el(tag, className, content) {
@@ -19,7 +20,10 @@ function el(tag, className, content) {
 const root = document.querySelector("#letter");
 const header = el("header", "letter-header");
 header.append(el("h1", "", data.person.name));
-header.append(el("p", "", `${data.person.location} | ${data.person.email} | ${data.person.phone}`));
+const contactParts = [data.person.location, data.person.workPermit, data.person.email, data.person.phone]
+  .concat((data.person.links || []).map((link) => link.text || link.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")))
+  .filter(Boolean);
+header.append(el("p", "", contactParts.join(" | ")));
 
 const meta = el("section", "letter-meta");
 meta.append(el("p", "", data.application.date));
@@ -33,3 +37,4 @@ body.append(el("p", "", data.closing));
 body.append(el("p", "signature", data.person.name));
 
 root.append(header, meta, body);
+document.body.dataset.rendered = "true";

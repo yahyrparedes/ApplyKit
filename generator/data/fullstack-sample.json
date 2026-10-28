@@ -1,51 +1,138 @@
 {
+  "lang": "en",
   "person": {
     "name": "Alex Developer",
     "location": "Spain | Remote / hybrid",
     "email": "alex@example.com",
     "phone": "+34 600 000 000",
-    "availability": "Available for full stack roles focused on product, frontend, backend, and cloud."
+    "availability": "Available for full stack roles focused on product, frontend, backend, and cloud.",
+    "shortName": "Alex Developer",
+    "workPermit": "EU work authorization",
+    "links": [
+      {
+        "url": "https://www.linkedin.com/in/alex-developer"
+      },
+      {
+        "url": "https://github.com/alex-developer"
+      }
+    ]
   },
   "target": {
     "title": "Full Stack Developer | Frontend | Backend | Cloud",
-    "roleLabel": "Fullstack / Product / Cloud"
+    "roleLabel": "Fullstack / Product / Cloud",
+    "fileRole": "Fullstack-Developer"
   },
   "profile": [
     "Full Stack Developer with experience building end-to-end digital products, from user-facing interfaces to backend APIs and cloud integrations.",
     "Pragmatic, product-oriented profile with experience collaborating with design, QA, backend, frontend, and business stakeholders."
   ],
   "skills": [
-    { "name": "Frontend", "items": ["React", "Angular", "Vue", "HTML", "CSS", "TypeScript"] },
-    { "name": "Backend", "items": ["Java", "Spring Boot", "Go", "Python", "Django", "Node.js", "TypeScript"] },
-    { "name": "Mobile", "items": ["Android", "Kotlin", "Ionic", "Flutter"] },
-    { "name": "Cloud/DevOps", "items": ["AWS", "GCP", "Docker", "GitHub Actions", "CloudWatch", "observability"] }
+    {
+      "name": "Frontend",
+      "items": [
+        "React",
+        "Angular",
+        "Vue",
+        "HTML",
+        "CSS",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "Backend",
+      "items": [
+        "Java",
+        "Spring Boot",
+        "Go",
+        "Python",
+        "Django",
+        "Node.js",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "Mobile",
+      "items": [
+        "Android",
+        "Kotlin",
+        "Ionic",
+        "Flutter"
+      ]
+    },
+    {
+      "name": "Cloud/DevOps",
+      "items": [
+        "AWS",
+        "GCP",
+        "Docker",
+        "GitHub Actions",
+        "CloudWatch",
+        "observability"
+      ]
+    }
   ],
   "experiencePrimary": [
     {
       "company": "Retail Technology Company",
       "role": "Full Stack Developer",
-      "dates": "Sep 2024 - Present",
+      "dates": "09/2024 – Present",
       "stack": "TypeScript, Node.js, Android, AWS",
       "highlights": [
         "Build customer-facing product features and backend services.",
         "Contribute to CI/CD workflows and cloud infrastructure.",
         "Collaborate with product, design, QA, and backend teams."
-      ]
+      ],
+      "location": "Madrid, Spain (hybrid)"
     },
     {
       "company": "Insurance Platform",
       "role": "Full Stack Developer",
-      "dates": "Jan 2023 - Aug 2024",
+      "dates": "01/2023 – 08/2024",
       "stack": "Java, Go, Vue, PostgreSQL, GCP",
       "highlights": [
         "Develop APIs and frontend features for high-traffic products.",
         "Improve observability, performance, and maintainability.",
         "Support technical debt reduction and production incident analysis."
-      ]
+      ],
+      "location": "Madrid, Spain (hybrid)"
     }
   ],
   "experienceSecondary": [],
-  "education": [{ "name": "Technical Degree / Computer Science Training", "detail": "Year - Year | Graduate" }],
-  "training": ["Frontend architecture.", "Backend microservices.", "Cloud fundamentals."],
-  "alignment": ["React", "TypeScript", "Java", "Go", "Python", "Node.js", "AWS", "GCP", "Docker", "Scrum"]
+  "education": [
+    {
+      "name": "Technical Degree / Computer Science Training",
+      "detail": "Year - Year | Graduate"
+    }
+  ],
+  "training": [
+    "Frontend architecture.",
+    "Backend microservices.",
+    "Cloud fundamentals."
+  ],
+  "alignment": [
+    "React",
+    "TypeScript",
+    "Java",
+    "Go",
+    "Python",
+    "Node.js",
+    "AWS",
+    "GCP",
+    "Docker",
+    "Scrum"
+  ],
+  "languages": [
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B2 (CEFR)",
+      "detail": "professional working proficiency"
+    }
+  ],
+  "labels": {
+    "languages": "Languages"
+  }
 }

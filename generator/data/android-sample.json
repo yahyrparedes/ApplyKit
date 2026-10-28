@@ -1,14 +1,26 @@
 {
+  "lang": "en",
   "person": {
     "name": "Alex Developer",
     "location": "Spain | Remote / hybrid",
     "email": "alex@example.com",
     "phone": "+34 600 000 000",
-    "availability": "Available for remote and hybrid Android roles."
+    "availability": "Available for remote and hybrid Android roles.",
+    "shortName": "Alex Developer",
+    "workPermit": "EU work authorization",
+    "links": [
+      {
+        "url": "https://www.linkedin.com/in/alex-developer"
+      },
+      {
+        "url": "https://github.com/alex-developer"
+      }
+    ]
   },
   "target": {
     "title": "Android Developer | Kotlin | Jetpack Compose",
-    "roleLabel": "Android / Kotlin"
+    "roleLabel": "Android / Kotlin",
+    "fileRole": "Android-Developer"
   },
   "profile": [
     "Android Developer with practical experience building and maintaining mobile applications with Kotlin and Java, focused on code quality, clean architecture, and continuous improvement.",
@@ -17,33 +29,68 @@
   "skills": [
     {
       "name": "Android",
-      "items": ["Kotlin", "Java", "Android SDK", "Jetpack Compose", "Lifecycle", "ViewModel", "Navigation", "Room", "Retrofit", "Firebase", "Material Design"]
+      "items": [
+        "Kotlin",
+        "Java",
+        "Android SDK",
+        "Jetpack Compose",
+        "Lifecycle",
+        "ViewModel",
+        "Navigation",
+        "Room",
+        "Retrofit",
+        "Firebase",
+        "Material Design"
+      ]
     },
     {
       "name": "Architecture",
-      "items": ["Clean Architecture", "MVVM", "MVI", "SOLID", "modularization", "refactoring"]
+      "items": [
+        "Clean Architecture",
+        "MVVM",
+        "MVI",
+        "SOLID",
+        "modularization",
+        "refactoring"
+      ]
     },
     {
       "name": "Quality",
-      "items": ["JUnit", "Mockito", "Espresso", "Compose UI tests", "Turbine", "Crashlytics", "debugging"]
+      "items": [
+        "JUnit",
+        "Mockito",
+        "Espresso",
+        "Compose UI tests",
+        "Turbine",
+        "Crashlytics",
+        "debugging"
+      ]
     },
     {
       "name": "Tools",
-      "items": ["Git", "GitHub Actions", "Gradle", "Android Studio", "Scrum", "Jira"]
+      "items": [
+        "Git",
+        "GitHub Actions",
+        "Gradle",
+        "Android Studio",
+        "Scrum",
+        "Jira"
+      ]
     }
   ],
   "experiencePrimary": [
     {
       "company": "Retail App Company",
       "role": "Android Developer",
-      "dates": "Jan 2023 - Present",
+      "dates": "01/2023 – Present",
       "stack": "Kotlin, Java, Android SDK, Jetpack Compose, Gradle, GitHub Actions",
       "highlights": [
         "Develop and maintain Android features for a customer-facing retail application.",
         "Implement modern UI screens with Kotlin and Jetpack Compose.",
         "Fix bugs, improve stability, and contribute to refactoring efforts.",
         "Collaborate with product, QA, backend, and design teams in Scrum."
-      ]
+      ],
+      "location": "Madrid, Spain (hybrid)"
     }
   ],
   "experienceSecondary": [],
@@ -58,5 +105,29 @@
     "Clean Architecture for Android.",
     "CI/CD foundations."
   ],
-  "alignment": ["Kotlin", "Android SDK", "Jetpack Compose", "MVVM", "Clean Architecture", "SOLID", "testing", "CI/CD", "Scrum"]
+  "alignment": [
+    "Kotlin",
+    "Android SDK",
+    "Jetpack Compose",
+    "MVVM",
+    "Clean Architecture",
+    "SOLID",
+    "testing",
+    "CI/CD",
+    "Scrum"
+  ],
+  "languages": [
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B2 (CEFR)",
+      "detail": "professional working proficiency"
+    }
+  ],
+  "labels": {
+    "languages": "Languages"
+  }
 }

@@ -2,68 +2,239 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ApplyKit CV data",
   "type": "object",
-  "required": ["person", "target", "profile", "skills", "experiencePrimary", "education", "training", "alignment"],
+  "required": [
+    "person",
+    "target",
+    "profile",
+    "skills",
+    "experiencePrimary",
+    "education",
+    "training",
+    "alignment"
+  ],
   "properties": {
     "person": {
       "type": "object",
-      "required": ["name", "location", "email", "phone", "availability"],
+      "required": [
+        "name",
+        "location",
+        "email",
+        "phone",
+        "availability"
+      ],
       "properties": {
-        "name": { "type": "string" },
-        "location": { "type": "string" },
-        "email": { "type": "string" },
-        "phone": { "type": "string" },
-        "availability": { "type": "string" }
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Name used in the exported file name."
+        },
+        "workPermit": {
+          "type": "string",
+          "description": "Work authorization line shown next to the location."
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "url"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "pattern": "^https?://"
+              },
+              "text": {
+                "type": "string"
+              }
+            }
+          }
+        }
       }
     },
     "target": {
       "type": "object",
-      "required": ["title", "roleLabel"],
+      "required": [
+        "title",
+        "roleLabel"
+      ],
       "properties": {
-        "title": { "type": "string" },
-        "roleLabel": { "type": "string" }
+        "title": {
+          "type": "string"
+        },
+        "roleLabel": {
+          "type": "string"
+        },
+        "fileRole": {
+          "type": "string",
+          "description": "Role label for the PDF file name, e.g. Android-Senior."
+        }
       }
     },
-    "profile": { "type": "array", "items": { "type": "string" } },
+    "profile": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "skills": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "items"],
+        "required": [
+          "name",
+          "items"
+        ],
         "properties": {
-          "name": { "type": "string" },
-          "items": { "type": "array", "items": { "type": "string" } }
+          "name": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       }
     },
-    "experiencePrimary": { "$ref": "#/$defs/experienceList" },
-    "experienceSecondary": { "$ref": "#/$defs/experienceList" },
+    "experiencePrimary": {
+      "$ref": "#/$defs/experienceList"
+    },
+    "experienceSecondary": {
+      "$ref": "#/$defs/experienceList"
+    },
     "education": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "detail"],
+        "required": [
+          "name",
+          "detail"
+        ],
         "properties": {
-          "name": { "type": "string" },
-          "detail": { "type": "string" }
+          "name": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
         }
       }
     },
-    "training": { "type": "array", "items": { "type": "string" } },
-    "alignment": { "type": "array", "items": { "type": "string" } },
-    "labels": { "type": "object" }
+    "training": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alignment": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Internal ATS keyword checklist. Shown in HTML preview only, never in the PDF."
+    },
+    "labels": {
+      "type": "object"
+    },
+    "lang": {
+      "type": "string",
+      "description": "Document language (BCP-47), e.g. es or en."
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "level"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "level": {
+            "type": "string",
+            "description": "CEFR level (A1-C2) or native."
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "fileName": {
+          "type": "string"
+        },
+        "fileRole": {
+          "type": "string"
+        },
+        "cvLabel": {
+          "type": "string"
+        },
+        "coverLetterLabel": {
+          "type": "string"
+        }
+      }
+    }
   },
   "$defs": {
     "experienceList": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["company", "role", "dates", "highlights"],
+        "required": [
+          "company",
+          "role",
+          "dates",
+          "highlights"
+        ],
         "properties": {
-          "company": { "type": "string" },
-          "role": { "type": "string" },
-          "dates": { "type": "string" },
-          "stack": { "type": "string" },
-          "highlights": { "type": "array", "items": { "type": "string" } }
+          "company": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "dates": {
+            "type": "string",
+            "description": "MM/YYYY – MM/YYYY or MM/YYYY – Actualidad/Present."
+          },
+          "stack": {
+            "type": "string"
+          },
+          "highlights": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "string",
+            "description": "City, country and/or work mode, e.g. Lima, Perú (remoto desde España)."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Optional one-line summary, useful for grouped earlier roles."
+          }
         }
       }
     }

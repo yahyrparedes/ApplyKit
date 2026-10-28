@@ -53,7 +53,9 @@ When the user provides a job offer:
 
 ## Output Rules
 
-- Final PDFs go in `output/pdf/<application-slug>/`.
+- Final PDFs go in `output/pdf/<application-slug>/` and are named `<Short-Name>-CV-<Role>.pdf` by the exporter.
+- Follow the European CV conventions in `docs/templates.md` (CEFR languages, MM/YYYY dates with location, single column, 2 pages max, alignment not printed).
+- If Playwright's bundled Chromium is unavailable, set `CHROMIUM_PATH` to a local Chromium/Chrome binary before exporting.
 - HTML previews or screenshots go in `output/preview/<application-slug>/`.
 - Drafts and strategy notes stay in `applications/<role-family>/<application-slug>/`.
 - The generator code stays generic and reusable.

@@ -36,9 +36,13 @@ build/
 coverage/
 
 # Generated outputs: can be regenerated from HTML/JSON
+output/*
+!output/pdf/
+!output/preview/
 output/pdf/*
 output/preview/*
 *.pdf
+*.docx
 
 # Temporary extraction/rendering files
 temp/
@@ -54,10 +58,9 @@ sources/supporting-documents/*
 master-info/*
 
 # Real job applications contain personal targeting and should not be public
+# Any role family folder (android, backend, operations, general, ...) holds personal data.
 applications/index.json
-applications/android/*
-applications/backend/*
-applications/fullstack/*
+applications/*/*
 
 # Keep folder structure in template mode
 !sources/cv/.gitkeep

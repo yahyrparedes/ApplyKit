@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.2.0 - European CV Standards
+
+### Added
+
+- `languages` section with CEFR levels, `person.workPermit`, `person.links` (LinkedIn/GitHub/portfolio), per-job `location` and optional `summary` for grouped earlier roles.
+- `lang` field to set the document language of the rendered CV and PDF.
+- Exporter reports page count and last-page fill, warns above `--max-pages` (default 2) or when the last page is under half full.
+- PDFs are named `<Short-Name>-CV-<Role>.pdf`; `applications/index.json` `pdfPath` is updated on export.
+- `CHROMIUM_PATH` environment variable to export with a local Chromium.
+- `validate --app <id>` plus European CV warnings (date format, job location, profile length, CEFR languages).
+
+### Changed
+
+- Body text raised to 10pt; skills and education rendered in a single column for ATS parsing.
+- `alignment` keywords are shown only in the HTML preview, never in the exported PDF.
+
 ## v0.1.1 - A4 Preview Polish
 
 Improves the CV preview and PDF output so generated documents match an A4 page more closely before export.

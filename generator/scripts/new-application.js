@@ -44,7 +44,7 @@ const entry = {
   template,
   dataPath: appDataPath,
   previewUrl: `/generator/templates/${template}.html?path=${appDataPath}`,
-  pdfPath: `/output/pdf/${slug}/cv.pdf`,
+  pdfPath: null,
   notesPath: appNotesPath
 };
 
