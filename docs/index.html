@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ApplyKit · CVs a medida para cada oferta, con IA</title>
+<meta name="description" content="ApplyKit es un workspace local para postular con agentes de IA: convierte tu experiencia en memoria reutilizable y genera CVs, cartas y PDFs adaptados a cada oferta.">
+<meta property="og:title" content="ApplyKit">
+<meta property="og:description" content="CVs a medida para cada oferta, con tu agente de IA y sin rehacerlos desde cero.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #172033;
+    --muted: #5a6475;
+    --line: #dfe7e4;
+    --paper: #fbfaf7;
+    --card: #ffffff;
+    --soft: #eef6f4;
+    --accent: #0f766e;
+    --accent-ink: #0b5b55;
+    --code-bg: #172033;
+    --code-ink: #e6edf3;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 17px/1.6 Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  .wrap { width: min(1080px, 100% - 32px); margin: 0 auto; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.12; letter-spacing: -0.01em; margin: 0; }
+  h2 { font-size: clamp(28px, 4vw, 38px); }
+  h3 { font-size: 20px; }
+  p { margin: 0; }
+  code, pre { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(251, 250, 247, 0.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 18px; }
+  .brand img { width: 34px; height: 34px; }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 15px; }
+  .nav-links a { color: var(--muted); text-decoration: none; }
+  .nav-links a:hover { color: var(--ink); }
+  .lang { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 12px; font: 600 13px Inter, sans-serif; color: var(--ink); cursor: pointer; }
+  .gh { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff !important; padding: 8px 14px; border-radius: 999px; font-weight: 600; }
+
+  /* Hero */
+  .hero { padding: 84px 0 64px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--soft); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px; }
+  .hero h1 { font-size: clamp(38px, 5.6vw, 60px); }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .lead { font-size: 19px; color: var(--muted); margin: 22px 0 32px; max-width: 34em; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 12px; font-weight: 600; text-decoration: none; border: 1px solid transparent; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-ink); }
+  .btn.ghost { border-color: var(--line); color: var(--ink); background: var(--card); }
+
+  /* Hero visual: a source → memory → CV stack */
+  .stack { position: relative; height: 380px; }
+  .sheet { position: absolute; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 18px 40px rgba(23, 32, 51, 0.10); padding: 18px; }
+  .sheet .tag { font: 600 11px Inter, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .bar { height: 7px; border-radius: 4px; background: var(--line); margin: 7px 0; }
+  .s1 { width: 58%; height: 200px; left: 0; top: 18px; transform: rotate(-4deg); }
+  .s2 { width: 58%; height: 200px; left: 21%; top: 70px; transform: rotate(2deg); }
+  .s3 { width: 64%; right: 0; top: 130px; padding: 20px; }
+  .s3 .name { font: 700 17px Fraunces, serif; }
+  .s3 .role { color: var(--accent); font-size: 13px; font-weight: 600; margin: 2px 0 12px; }
+  .chip { display: inline-block; font-size: 11px; background: var(--soft); color: var(--accent-ink); border-radius: 6px; padding: 2px 7px; margin: 0 4px 4px 0; }
+  .check { position: absolute; right: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 15px; }
+
+  section { padding: 72px 0; }
+  .section-head { max-width: 640px; margin-bottom: 40px; }
+  .section-head p { color: var(--muted); margin-top: 14px; font-size: 18px; }
+
+  /* Flow */
+  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+  .flow article { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; position: relative; }
+  .flow article::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--soft); color: var(--accent); font-weight: 700; margin-bottom: 16px; }
+  .flow p { color: var(--muted); margin-top: 8px; font-size: 16px; }
+  .flow code { font-size: 13px; background: var(--soft); padding: 2px 6px; border-radius: 5px; color: var(--accent-ink); }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .features div { background: var(--card); padding: 26px; }
+  .features h3 { font-family: Inter, sans-serif; font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .features p { color: var(--muted); font-size: 15.5px; }
+  .ico { font-size: 22px; margin-bottom: 12px; display: block; }
+
+  /* When */
+  .when { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .when > div { border-radius: var(--radius); padding: 28px; border: 1px solid var(--line); background: var(--card); }
+  .when .yes { background: var(--soft); border-color: #cfe5e0; }
+  .when h3 { margin-bottom: 14px; }
+  .when ul { margin: 0; padding-left: 20px; }
+  .when li { margin: 8px 0; color: var(--ink); }
+  .when .no li { color: var(--muted); }
+
+  /* Steps */
+  .steps { display: grid; gap: 18px; }
+  .step { display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .step h3 { font-family: Inter, sans-serif; font-size: 17px; font-weight: 600; }
+  .step p { color: var(--muted); font-size: 15.5px; margin-top: 6px; }
+  .code { position: relative; background: var(--code-bg); color: var(--code-ink); border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.65; overflow-x: auto; white-space: pre; }
+  .code .c { color: #8b97a8; }
+  .copy { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.08); color: var(--code-ink); border: 1px solid rgba(255,255,255,0.14); border-radius: 7px; font: 500 12px Inter, sans-serif; padding: 4px 9px; cursor: pointer; }
+  .copy:hover { background: rgba(255,255,255,0.16); }
+
+  /* Prompt */
+  .prompt { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: center; }
+  .prompt p { color: var(--muted); margin-top: 12px; }
+  .agents { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .agents span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13.5px; color: var(--ink); background: var(--paper); }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: 15px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    .hero { padding: 48px 0 32px; }
+    .hero .wrap, .prompt, .when { grid-template-columns: 1fr; }
+    .stack { height: 330px; }
+    .flow, .features { grid-template-columns: 1fr; }
+    .step { grid-template-columns: 1fr; gap: 14px; }
+    .nav-links a:not(.gh) { display: none; }
+    section { padding: 52px 0; }
+    .code { padding-top: 40px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logo.svg" alt="">ApplyKit</a>
+    <div class="nav-links">
+      <a href="#como-funciona" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#cuando" data-i18n="nav.when">Cuándo usarlo</a>
+      <a href="#empezar" data-i18n="nav.start">Empezar</a>
+      <button class="lang" id="lang" type="button" aria-label="Change language">EN</button>
+      <a class="gh" href="https://github.com/yahyrparedes/ApplyKit">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-i18n="hero.eyebrow">Open source · Local-first · Para agentes de IA</span>
+      <h1 data-i18n-html="hero.title">Un CV a medida para <em>cada oferta</em>, sin rehacerlo desde cero.</h1>
+      <p class="lead" data-i18n="hero.lead">ApplyKit es un workspace para postular con tu agente de IA. Convierte tus CVs, contratos y certificados en una memoria profesional reutilizable, y a partir de ella genera CVs, cartas y PDFs enfocados en cada puesto, con un panel para seguir tus postulaciones.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#empezar" data-i18n="hero.cta">Empezar en 5 minutos</a>
+        <a class="btn ghost" href="https://github.com/yahyrparedes/ApplyKit" data-i18n="hero.cta2">Ver el código</a>
+      </div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <div class="sheet s1"><div class="tag" data-i18n="vis.sources">Tus documentos</div><div class="bar" style="width:80%"></div><div class="bar" style="width:62%"></div><div class="bar" style="width:74%"></div><div class="bar" style="width:48%"></div><div class="bar" style="width:66%"></div></div>
+      <div class="sheet s2"><div class="tag">master-info/</div><div class="bar" style="width:70%"></div><div class="bar" style="width:86%"></div><div class="bar" style="width:58%"></div><div class="bar" style="width:76%"></div><div class="bar" style="width:52%"></div></div>
+      <div class="sheet s3">
+        <span class="check">✓</span>
+        <div class="name">Alex Developer</div>
+        <div class="role">Senior Android Developer · Kotlin · Compose</div>
+        <div class="bar" style="width:92%"></div><div class="bar" style="width:84%"></div><div class="bar" style="width:68%"></div>
+        <div style="margin-top:12px"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">MVVM</span><span class="chip" data-i18n="vis.lang">Inglés B2 (MCER)</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="how.title">De tus documentos a un CV enfocado</h2>
+      <p data-i18n="how.lead">Enviar el mismo CV genérico a todas las ofertas no funciona. ApplyKit separa tu experiencia real de cada versión que envías.</p>
+    </div>
+    <div class="flow">
+      <article><h3 data-i18n="how.s1">Reúne tu evidencia</h3><p data-i18n-html="how.s1p">Guarda CVs antiguos, contratos, certificados y títulos en <code>sources/</code>.</p></article>
+      <article><h3 data-i18n="how.s2">Crea tu memoria profesional</h3><p data-i18n-html="how.s2p">Tu agente extrae fechas, roles, logros y tecnologías a <code>master-info/</code>, marcando lo dudoso en lugar de inventarlo.</p></article>
+      <article><h3 data-i18n="how.s3">Genera un CV por oferta</h3><p data-i18n="how.s3p">Pega la oferta y el agente prepara el CV, las notas de estrategia y la carta. Revisas la vista previa y exportas el PDF.</p></article>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="feat.title">Qué incluye</h2>
+    </div>
+    <div class="features">
+      <div><span class="ico">📄</span><h3 data-i18n="feat.1">Plantillas por rol</h3><p data-i18n="feat.1p">Android, Backend, Fullstack y ATS. Datos en JSON, vista previa en HTML y PDF A4 listo para enviar.</p></div>
+      <div><span class="ico">🇪🇺</span><h3 data-i18n="feat.2">Estándar europeo</h3><p data-i18n="feat.2p">Sin foto ni datos sensibles, una sola columna legible por ATS, idiomas con nivel MCER y fechas MM/AAAA.</p></div>
+      <div><span class="ico">✅</span><h3 data-i18n="feat.3">Validación automática</h3><p data-i18n="feat.3p">Avisa de fechas mal formateadas, perfiles demasiado largos, CVs de más de 2 páginas o páginas medio vacías.</p></div>
+      <div><span class="ico">✉️</span><h3 data-i18n="feat.4">Cartas de presentación</h3><p data-i18n="feat.4p">Plantilla de una página generada desde datos estructurados, con la misma coherencia que tu CV.</p></div>
+      <div><span class="ico">📋</span><h3 data-i18n="feat.5">Panel de postulaciones</h3><p data-i18n="feat.5p">Empresa, rol, estado, fecha, notas y PDF de cada postulación en un panel local.</p></div>
+      <div><span class="ico">🔒</span><h3 data-i18n="feat.6">Tus datos se quedan contigo</h3><p data-i18n="feat.6p">Todo funciona en local. El .gitignore impide publicar tus documentos, tu memoria y tus postulaciones.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cuando" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="when.title">¿Es para ti?</h2>
+    </div>
+    <div class="when">
+      <div class="yes">
+        <h3 data-i18n="when.yes">Úsalo si…</h3>
+        <ul>
+          <li data-i18n="when.y1">Postulas a muchas ofertas y quieres adaptar cada CV sin empezar de cero.</li>
+          <li data-i18n="when.y2">Tu perfil sirve para varios roles (por ejemplo mobile, backend o sistemas).</li>
+          <li data-i18n="when.y3">Ya trabajas con un agente de IA como Claude Code, Cursor o Codex.</li>
+          <li data-i18n="when.y4">Postulas en Europa y quieres un formato que pase los filtros ATS.</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3 data-i18n="when.no">Quizá no lo necesites si…</h3>
+        <ul>
+          <li data-i18n="when.n1">Buscas un editor visual de CVs con plantillas de diseño.</li>
+          <li data-i18n="when.n2">Solo vas a enviar uno o dos CVs.</li>
+          <li data-i18n="when.n3">Prefieres no usar la terminal ni un agente de IA.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="empezar" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="start.title">Empieza en 4 pasos</h2>
+      <p data-i18n="start.lead">Necesitas Node.js 18 o superior y un agente de IA.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div><h3 data-i18n="start.1">1. Clona e instala</h3><p data-i18n="start.1p">Instala el generador y el navegador para exportar PDFs.</p></div>
+        <div class="code"><button class="copy" type="button">Copiar</button>git clone https://github.com/yahyrparedes/ApplyKit.git
+cd ApplyKit/generator
+npm install
+npx playwright install chromium</div>
+      </div>
+      <div class="step">
+        <div><h3 data-i18n="start.2">2. Añade tus documentos</h3><p data-i18n="start.2p">Copia tus CVs y evidencias. Después pide a tu agente que construya tu memoria profesional con el primer prompt de PROMPTS.md.</p></div>
+        <div class="code"><button class="copy" type="button">Copiar</button><span class="c"># old CVs</span>
+sources/cv/
+<span class="c"># contracts, certificates, degrees…</span>
+sources/supporting-documents/</div>
+      </div>
+      <div class="step">
+        <div><h3 data-i18n="start.3">3. Crea una postulación</h3><p data-i18n="start.3p">Pega la oferta a tu agente, o crea la carpeta tú mismo y abre la vista previa.</p></div>
+        <div class="code"><button class="copy" type="button">Copiar</button>npm run new -- --role android --company acme --title android-developer --template android
+npm run start   <span class="c"># http://127.0.0.1:4173</span></div>
+      </div>
+      <div class="step">
+        <div><h3 data-i18n="start.4">4. Valida y exporta</h3><p data-i18n="start.4p">Comprueba el formato europeo y genera el PDF con el nombre listo para enviar.</p></div>
+        <div class="code"><button class="copy" type="button">Copiar</button>npm run validate -- --app acme-android-developer
+npm run pdf -- --template android --slug acme-android-developer \
+  --path /applications/android/acme-android-developer/cv-data.json
+<span class="c"># → output/pdf/acme-android-developer/Alex-Developer-CV-Android-Developer.pdf</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="prompt">
+      <div>
+        <h2 data-i18n="prompt.title">Hecho para trabajar con tu agente</h2>
+        <p data-i18n="prompt.lead">AGENTS.md le dice a tu agente qué leer, cómo crear cada postulación y, sobre todo, que no invente fechas, títulos ni tecnologías.</p>
+        <div class="agents"><span>Claude Code</span><span>Cursor</span><span>Codex</span><span>GitHub Copilot</span><span>ChatGPT</span></div>
+      </div>
+      <div class="code"><button class="copy" type="button">Copiar</button><span data-i18n="prompt.code">Quiero postular a esta oferta usando ApplyKit.
+Lee README.md, AGENTS.md y master-info/.
+Analiza la oferta, elige la plantilla, crea
+cv-data.json y notes.md, y dame la URL de la
+vista previa. No inventes datos.
+
+[pega aquí la oferta]</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer.l">ApplyKit · Licencia MIT · Pasa menos tiempo maquetando y más enviando postulaciones relevantes.</span>
+    <a href="https://github.com/yahyrparedes/ApplyKit" data-i18n="footer.r">Contribuir en GitHub →</a>
+  </div>
+</footer>
+
+<script>
+  const en = {
+    "nav.how": "How it works", "nav.when": "Who it's for", "nav.start": "Get started",
+    "hero.eyebrow": "Open source · Local-first · Built for AI agents",
+    "hero.title": "A tailored CV for <em>every job</em>, without starting from scratch.",
+    "hero.lead": "ApplyKit is a workspace for applying to jobs with your AI agent. It turns your CVs, contracts and certificates into reusable career memory, then generates CVs, cover letters and PDFs focused on each role, with a dashboard to track your applications.",
+    "hero.cta": "Get started in 5 minutes", "hero.cta2": "View the code",
+    "vis.sources": "Your documents", "vis.lang": "English B2 (CEFR)",
+    "how.title": "From your documents to a focused CV",
+    "how.lead": "Sending the same generic CV everywhere doesn't work. ApplyKit keeps your real experience separate from each version you send.",
+    "how.s1": "Collect your evidence", "how.s1p": "Drop old CVs, contracts, certificates and degrees into <code>sources/</code>.",
+    "how.s2": "Build your career memory", "how.s2p": "Your agent extracts dates, roles, achievements and tech into <code>master-info/</code>, flagging anything uncertain instead of inventing it.",
+    "how.s3": "Generate a CV per job", "how.s3p": "Paste the job offer and the agent prepares the CV, strategy notes and cover letter. You review the preview and export the PDF.",
+    "feat.title": "What's inside",
+    "feat.1": "Role-based templates", "feat.1p": "Android, Backend, Fullstack and ATS. JSON data, HTML preview and an A4 PDF ready to send.",
+    "feat.2": "European CV standard", "feat.2p": "No photo or sensitive data, single ATS-friendly column, CEFR language levels and MM/YYYY dates.",
+    "feat.3": "Automatic checks", "feat.3p": "Warns about badly formatted dates, long profiles, CVs over 2 pages or half-empty pages.",
+    "feat.4": "Cover letters", "feat.4p": "One-page template generated from structured data, consistent with your CV.",
+    "feat.5": "Application tracker", "feat.5p": "Company, role, status, date, notes and PDF for every application in a local dashboard.",
+    "feat.6": "Your data stays yours", "feat.6p": "Everything runs locally. The .gitignore keeps your documents, memory and applications out of git.",
+    "when.title": "Is it for you?", "when.yes": "Use it if…",
+    "when.y1": "You apply to many jobs and want to tailor each CV without starting over.",
+    "when.y2": "Your profile fits several roles (e.g. mobile, backend or systems).",
+    "when.y3": "You already work with an AI agent like Claude Code, Cursor or Codex.",
+    "when.y4": "You apply in Europe and need a format that gets through ATS filters.",
+    "when.no": "You may not need it if…",
+    "when.n1": "You want a visual CV editor with design templates.",
+    "when.n2": "You're only sending one or two CVs.",
+    "when.n3": "You'd rather not use the terminal or an AI agent.",
+    "start.title": "Get started in 4 steps", "start.lead": "You need Node.js 18+ and an AI agent.",
+    "start.1": "1. Clone and install", "start.1p": "Install the generator and the browser used to export PDFs.",
+    "start.2": "2. Add your documents", "start.2p": "Copy your CVs and evidence. Then ask your agent to build your career memory with the first prompt in PROMPTS.md.",
+    "start.3": "3. Create an application", "start.3p": "Paste the job offer to your agent, or create the folder yourself and open the preview.",
+    "start.4": "4. Validate and export", "start.4p": "Check the European format and generate the PDF, named and ready to send.",
+    "prompt.title": "Built to work with your agent",
+    "prompt.lead": "AGENTS.md tells your agent what to read, how to create each application and, above all, never to invent dates, titles or technologies.",
+    "prompt.code": "I want to apply to this job using ApplyKit.\nRead README.md, AGENTS.md and master-info/.\nAnalyze the offer, pick the template, create\ncv-data.json and notes.md, and give me the\npreview URL. Do not invent facts.\n\n[paste the job offer here]",
+    "footer.l": "ApplyKit · MIT License · Spend less time formatting and more time sending relevant applications.",
+    "footer.r": "Contribute on GitHub →"
+  };
+  const es = {};
+  document.querySelectorAll("[data-i18n]").forEach((n) => (es[n.dataset.i18n] = n.textContent));
+  document.querySelectorAll("[data-i18n-html]").forEach((n) => (es[n.dataset.i18nHtml] = n.innerHTML));
+  const copyLabel = { es: "Copiar", en: "Copy", esDone: "Copiado", enDone: "Copied" };
+
+  function setLang(lang) {
+    const dict = lang === "en" ? en : es;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((n) => { if (dict[n.dataset.i18n]) n.textContent = dict[n.dataset.i18n]; });
+    document.querySelectorAll("[data-i18n-html]").forEach((n) => { if (dict[n.dataset.i18nHtml]) n.innerHTML = dict[n.dataset.i18nHtml]; });
+    document.querySelectorAll(".copy").forEach((b) => (b.textContent = copyLabel[lang]));
+    document.getElementById("lang").textContent = lang === "en" ? "ES" : "EN";
+    try { localStorage.setItem("applykit-lang", lang); } catch (e) {}
+  }
+
+  let current = "es";
+  try { current = localStorage.getItem("applykit-lang") || (navigator.language.startsWith("es") ? "es" : "en"); } catch (e) {}
+  setLang(current);
+  document.getElementById("lang").addEventListener("click", () => { current = current === "en" ? "es" : "en"; setLang(current); });
+
+  document.querySelectorAll(".copy").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const block = button.parentElement.cloneNode(true);
+      block.querySelector(".copy").remove();
+      const text = block.textContent.split("\n").filter((line) => !line.trim().startsWith("#") && !line.includes("→")).join("\n").trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = copyLabel[current + "Done"];
+        setTimeout(() => (button.textContent = copyLabel[current]), 1500);
+      } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>

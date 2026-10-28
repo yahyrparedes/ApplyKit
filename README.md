@@ -2,6 +2,8 @@
 
 **A reusable workspace for AI-assisted job applications.**
 
+🌐 Website: https://yahyrparedes.github.io/ApplyKit/
+
 Spanish documentation: [README.es.md](README.es.md)
 
 ApplyKit helps you organize career sources, generate role-focused CVs, review them in HTML, export polished PDFs, write cover letters, and track every application from one local dashboard.
@@ -128,7 +130,7 @@ npm run pdf -- --template android --slug example-company-android-developer --pat
 The PDF is generated at:
 
 ```text
-output/pdf/example-company-android-developer/cv.pdf
+output/pdf/example-company-android-developer/<Short-Name>-CV-<Role>.pdf
 ```
 
 ## Export Cover Letter

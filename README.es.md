@@ -2,6 +2,8 @@
 
 **Un workspace reutilizable para postulaciones laborales asistidas por IA.**
 
+🌐 Web: https://yahyrparedes.github.io/ApplyKit/
+
 ApplyKit te ayuda a organizar tus documentos profesionales, generar CVs enfocados por rol, revisarlos en HTML, exportar PDFs profesionales, crear cartas de presentación y llevar el control de tus postulaciones desde un panel local.
 
 Está pensado para personas que postulan de forma constante y quieren un flujo repetible, en lugar de rehacer el mismo CV desde cero para cada oferta.
@@ -126,7 +128,7 @@ npm run pdf -- --template android --slug example-company-android-developer --pat
 El PDF se genera en:
 
 ```text
-output/pdf/example-company-android-developer/cv.pdf
+output/pdf/example-company-android-developer/<Short-Name>-CV-<Role>.pdf
 ```
 
 ## Exportar carta de presentación
